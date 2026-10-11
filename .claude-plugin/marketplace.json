@@ -12,7 +12,7 @@
       "name": "givememod",
       "source": "./plugins/givememod",
       "description": "Say /givememod and get a Claude Code mod for the task in front of you: a plan bar, a files counter, a guard, a watcher, a pinboard. Built from tested templates, loaded live, tuned to taste; the ones you like become favorites. With the official mods docs, 29 building blocks, techniques and resources from 222 mod repositories, and a map of 3,057 public mods.",
-      "version": "1.0.0",
+      "version": "1.0.1",
       "author": {
         "name": "timoncool"
       },

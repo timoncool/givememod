@@ -50,11 +50,6 @@ export const register: Register = on => {
     return r
   })
 
-  on('classic.SessionStart', { source: ['clear', 'resume', 'fork'] }, async ($, e, next) => {
-    await update($, files, () => [])
-    return next(e)
-  })
-
   on('command.run', { command: 'files' }, async ($, e) => {
     if (e.args.trim() === 'hide') {
       const hidden = !(await read($, isHidden))

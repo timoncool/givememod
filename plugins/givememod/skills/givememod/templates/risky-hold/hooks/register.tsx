@@ -4,10 +4,10 @@ import type { Register } from 'claude-code'
 import type { RiskyLog } from '../types'
 
 const RISKY: { label: string; pattern: RegExp }[] = [
-  { label: 'recursive delete', pattern: /\brm\s+(-[a-zA-Z]*r[a-zA-Z]*f|-[a-zA-Z]*f[a-zA-Z]*r)\b|\bRemove-Item\b.*-Recurse/i },
+  { label: 'recursive delete', pattern: /\brm\s(?:[^|;&\n]*\s)?(?:-[a-z]*r[a-z]*|--recursive)\b|\bRemove-Item\b.*-Recurse/i },
   { label: 'discard changes', pattern: /\bgit\s+(reset\s+--hard|clean\s+-[a-z]*f|checkout\s+--\s+\.|restore\s+\.)/ },
   { label: 'force push', pattern: /\bgit\s+push\b.*(--force\b|-f\b|--force-with-lease\b)/ },
-  { label: 'database wipe', pattern: /\b(DROP\s+(TABLE|DATABASE|SCHEMA)|TRUNCATE\s+TABLE?)\b|\bDELETE\s+FROM\s+\w+\s*;?\s*$/i },
+  { label: 'database wipe', pattern: /\b(DROP\s+(TABLE|DATABASE|SCHEMA)|TRUNCATE\s+(TABLE\s+)?\w+)\b|\bDELETE\s+FROM\s+\w+\s*;?\s*$/i },
   { label: 'migration or deploy', pattern: /\b(migrate\s+(reset|fresh)|db:drop|terraform\s+destroy|kubectl\s+delete)\b/ },
 ]
 

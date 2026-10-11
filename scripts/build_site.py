@@ -10,7 +10,7 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 DOCS = os.path.join(ROOT, 'docs')
 SITE = 'https://timoncool.github.io/givememod/'
 REPO = 'https://github.com/timoncool/givememod'
-VERSION = '1.0.0'
+VERSION = '1.0.1'
 UPDATED = '2026-10-11'
 LANGS = ['en', 'ru', 'zh']
 FILES = {'en': 'index.html', 'ru': 'ru.html', 'zh': 'zh.html'}
@@ -60,7 +60,7 @@ T = {
             ('Builds it from a template', 'Eleven tested templates and 29 building blocks, written by the rules the loader enforces, into the session\'s mods folder.'),
             ('Checks it', 'claude plugin validate and claude plugin test before you see it.'),
             ('Loads it live', 'The first time, Claude Code asks to enable hot reloading for the session; after that every change appears when the reply ends.'),
-            ('Keeps the ones you like', 'Say "keep it": the mod goes to your own local marketplace and is proposed first the next time a similar task comes up.'),
+            ('Keeps the ones you like', 'Say "keep it": the mod goes to your skills folder, loads in every session with nothing to install, and is proposed first the next time a similar task comes up.'),
         ],
         'in_h': 'What is inside',
         'in_sub': 'Everything the skill reads before it writes a line.',
@@ -103,7 +103,7 @@ T = {
         'faq': [
             ('What is a Claude Code mod?', 'A plugin whose hooks module runs inside Claude Code. It can draw a band above the prompt, open a pane, show toasts and a status line, hold a tool call until you answer, add commands that answer with no model turn, and give Claude tools.'),
             ('Does it cost tokens?', 'Building a mod is one ordinary Claude turn. The mods themselves make no model calls unless you ask for one, and they add nothing to the context.'),
-            ('Where do the mods live?', 'A one-off mod lives in the session\'s mods folder and is cleaned up with old sessions. A kept mod is copied to ~/.claude/givememod/mods and listed in a local marketplace.'),
+            ('Where do the mods live?', 'A one-off mod lives in the session\'s mods folder and is cleaned up with old sessions. A kept mod is copied to ~/.claude/skills/<name> (or the project\'s .claude/skills) and loads from there in every session.'),
             ('Does it work in the desktop app?', 'Yes, in the Code tab of Claude Desktop. Install the plugin once from a terminal; the skill is then there in desktop sessions too.'),
             ('Is a mod safe?', 'A mod runs with your permissions. Every template is small and readable, guards fail closed, and the skill reviews any third-party mod before you load it.'),
             ('Can I share a mod I like?', 'Yes. A folder with a marketplace file beside plugin.json is installable with /plugin install <mod> --marketplace <owner>/<repo>.'),
@@ -149,7 +149,7 @@ T = {
             ('Собирает из шаблона', 'Одиннадцать проверенных шаблонов и 29 блоков, по правилам, которые проверяет загрузчик, в папку модов сессии.'),
             ('Проверяет', 'claude plugin validate и claude plugin test до того, как ты его увидишь.'),
             ('Подгружает на лету', 'В первый раз Claude Code спросит, включить ли hot reload для сессии; дальше каждая правка появляется, когда заканчивается ответ.'),
-            ('Оставляет понравившиеся', 'Скажи «оставь»: мод уходит в твой локальный маркетплейс, и в похожей задаче его предложат первым.'),
+            ('Оставляет понравившиеся', 'Скажи «оставь»: мод уходит в папку скиллов, грузится в каждой сессии без установки, и в похожей задаче его предложат первым.'),
         ],
         'in_h': 'Что внутри',
         'in_sub': 'Всё, что скилл читает, прежде чем написать строку.',
@@ -192,7 +192,7 @@ T = {
         'faq': [
             ('Что такое мод Claude Code?', 'Плагин с модулем хуков, который работает внутри Claude Code. Он умеет рисовать полосу над промптом, открывать панель, показывать уведомления и строку статуса, держать вызов инструмента до твоего ответа, добавлять команды без хода модели и давать Claude свои инструменты.'),
             ('Это тратит токены?', 'Сборка мода это один обычный ход Claude. Сами моды не вызывают модель, если не попросить, и ничего не добавляют в контекст.'),
-            ('Где живут моды?', 'Разовый мод лежит в папке модов сессии и убирается вместе со старыми сессиями. Оставленный копируется в ~/.claude/givememod/mods и попадает в локальный маркетплейс.'),
+            ('Где живут моды?', 'Разовый мод лежит в папке модов сессии и убирается вместе со старыми сессиями. Оставленный копируется в ~/.claude/skills/<имя> (или в .claude/skills проекта) и грузится оттуда в каждой сессии.'),
             ('В десктопе работает?', 'Да, во вкладке Code в Claude Desktop. Установи плагин один раз из терминала, и скилл появится в десктопных сессиях.'),
             ('Мод безопасен?', 'Мод работает с твоими правами. Каждый шаблон маленький и читаемый, гарды закрываются при сбое, а чужой мод скилл проверяет до загрузки.'),
             ('Можно поделиться модом?', 'Да. Папка с файлом маркетплейса рядом с plugin.json ставится командой /plugin install <мод> --marketplace <владелец>/<репо>.'),
@@ -238,7 +238,7 @@ T = {
             ('用模板构建', '11 个测试过的模板和 29 个构建块，遵循加载器的规则，写入本会话的 mods 文件夹。'),
             ('检查', '在你看到之前运行 claude plugin validate 和 claude plugin test。'),
             ('实时加载', '第一次 Claude Code 会询问是否为本会话启用热重载；之后每次修改都在回答结束时生效。'),
-            ('保留喜欢的', '说"留下它"：mod 进入你的本地 marketplace，下次遇到类似任务时优先推荐。'),
+            ('保留喜欢的', '说"留下它"：mod 进入你的 skills 文件夹，无需安装即在每个会话中加载，下次遇到类似任务时优先推荐。'),
         ],
         'in_h': '里面有什么',
         'in_sub': 'skill 在写下第一行之前读过的全部内容。',
@@ -281,7 +281,7 @@ T = {
         'faq': [
             ('什么是 Claude Code mod？', '一个带钩子模块、在 Claude Code 内部运行的插件。它可以在输入框上方绘制信息栏、打开面板、显示提示和状态行、在你回答前暂停工具调用、添加无需模型回合的命令，并为 Claude 提供工具。'),
             ('会消耗 token 吗？', '构建 mod 是一次普通的 Claude 回合。mod 本身不会调用模型（除非你要求），也不向上下文添加内容。'),
-            ('mod 存放在哪里？', '临时 mod 位于会话的 mods 文件夹，随旧会话一起清理。保留的 mod 复制到 ~/.claude/givememod/mods 并列入本地 marketplace。'),
+            ('mod 存放在哪里？', '临时 mod 位于会话的 mods 文件夹，随旧会话一起清理。保留的 mod 复制到 ~/.claude/skills/<名称>（或项目的 .claude/skills），每个会话都从那里加载。'),
             ('桌面版能用吗？', '能，在 Claude Desktop 的 Code 标签页中。在终端安装一次插件，桌面会话里也能用这个 skill。'),
             ('mod 安全吗？', 'mod 以你的权限运行。每个模板都很小且易读，守卫在出错时拒绝执行，第三方 mod 在加载前会被审查。'),
             ('能分享我做的 mod 吗？', '能。在 plugin.json 旁放一个 marketplace 文件，就可以用 /plugin install <mod> --marketplace <owner>/<repo> 安装。'),
@@ -296,7 +296,7 @@ T = {
 
 LINKS = [('GitHub', 'https://github.com/timoncool'), ('Telegram @nerual_dreming', 'https://t.me/nerual_dreming'), ('Telegram @neuroport', 'https://t.me/neuroport'), ('ArtGeneration.me', 'https://artgeneration.me')]
 DONATE = 'https://github.com/timoncool/ACE-Step-Studio/blob/master/DONATE.md'
-STARS = 'https://img.shields.io/github/stars/timoncool/givememod?style=flat&amp;label=%E2%98%85&amp;color=2a2b30'
+STARS = 'https://img.shields.io/github/stars/timoncool/givememod?style=flat&amp;label=%E2%98%85&amp;color=2a2b30&amp;cacheSeconds=3600'
 
 CSS = """
 @font-face { font-family: 'Cascadia Mono'; src: url('site/fonts/cascadia-mono.woff2') format('woff2'); font-weight: 200 700; font-display: swap; }
@@ -574,7 +574,7 @@ def main():
 
 > {en['desc']}
 
-givememod is a Claude Code skill packaged as a plugin. On `/givememod` (or "make me a mod") it reads the conversation, proposes the smallest mod that fits, copies one of 11 tested templates into the session's dev-mods folder, adapts it with 29 building blocks, checks it with `claude plugin validate` and `claude plugin test`, and lets Claude Code hot-reload it. Kept mods go to `~/.claude/givememod/` as a local marketplace.
+givememod is a Claude Code skill packaged as a plugin. On `/givememod` (or "make me a mod") it reads the conversation, proposes the smallest mod that fits, copies one of 11 tested templates into the session's dev-mods folder, adapts it with 29 building blocks, checks it with `claude plugin validate` and `claude plugin test`, and lets Claude Code hot-reload it. Kept mods go to `~/.claude/skills/<name>/`, where Claude Code loads them as `<name>@skills-dir` with no install.
 
 - Install: `claude plugin marketplace add timoncool/givememod`, then `claude plugin install givememod@givememod` in any terminal (inside a terminal session `/plugin install givememod@givememod` works too).
 - Needs Claude Code 2.1.287+ in the terminal, 2.1.286+ in the desktop Code tab.

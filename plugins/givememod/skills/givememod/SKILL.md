@@ -16,7 +16,11 @@ This skill exists so that any conversation can get its own small, throwaway mod 
 
 1. The types file of the running build: `<mod>/.claude-plugin/types/claude-code/index.d.ts` once a mod has loaded, or the path the built-in `plugin-authoring` skill names before that. Line 1 is the version. Take every field, event and method shape from it (grep `'tool.call'`, `Pane: {`, `export type X`), never from memory.
 2. `claude plugin validate <dir>`: what the engine actually reads from the code.
-3. The official docs in `references/official/`. They are Anthropic's and are not shipped in the public repository: when a page you need is missing, fetch it there with `curl -sL https://code.claude.com/docs/en/plugins/mods/<page>.md -o <page>.md` (pages: overview, create, events, interface, api, test, troubleshoot, admin, reference, gallery), and refresh them after a Claude Code update.
+3. The official docs in `references/official/`. They are Anthropic's and are not shipped in the public repository: the first time this skill runs and the folder holds only its README, fetch all ten pages into it at once, from this skill's base directory:
+   ```bash
+   for p in overview create events interface api test troubleshoot admin reference gallery; do curl -sfL "https://code.claude.com/docs/en/plugins/mods/$p.md" -o "references/official/$p.md"; done
+   ```
+   Fetch them again after a Claude Code update. `references/api-index.md` lists every event, `$` method and `next` field of the build it was made from, one line each.
 4. This skill.
 5. Community mods and skills: hypotheses; some describe early-access builds (see "Stale claims" in `references/gotchas.md`).
 
@@ -85,16 +89,13 @@ All traps with symptoms: `references/gotchas.md`.
 
 When the person likes a mod ("keep it", "сохрани", "в избранное", "use this every time"), with their yes:
 
-1. Copy its folder from dev-mods to `~/.claude/givememod/mods/<name>/` (outside dev-mods, which is cleaned after `cleanupPeriodDays`).
-2. Keep `~/.claude/givememod/.claude-plugin/marketplace.json` listing every kept mod:
-   ```json
-   { "name": "givememod-favorites", "owner": { "name": "me" },
-     "plugins": [ { "name": "<name>", "source": "./mods/<name>", "description": "<one line>" } ] }
-   ```
-3. Add one line to `~/.claude/givememod/FAVORITES.md`: `- <name>: <what it shows> · propose when <situation>`. The picker reads this file first.
-4. First time only, the person runs in a terminal (the desktop Code tab has no `/plugin` command): `claude plugin marketplace add ~/.claude/givememod`, then `claude plugin install <name>@givememod-favorites`. A marketplace that is a folder is read from that folder itself: later edits reach sessions with `/reload-plugins`, no reinstall.
+1. Copy its folder out of dev-mods (cleaned after `cleanupPeriodDays`), without `.claude-plugin/types/`, into a skills folder. A folder there that carries `.claude-plugin/plugin.json` is a skills-directory plugin: it loads in place as `<name>@skills-dir` from the next session start or `/reload-plugins`, with no marketplace and no install, in the terminal and the desktop app alike.
+   - every project: `~/.claude/skills/<name>/`;
+   - one project only: `<project>/.claude/skills/<name>/`, which also shares it with everyone who clones the repository.
+2. Add one line to `~/.claude/givememod/FAVORITES.md`: `- <name>: <what it shows> · <where it lives> · propose when <situation>`. The picker reads this file first.
+3. Tell the person how to switch it off: `claude plugin disable <name>@skills-dir`, or `"<name>@skills-dir": false` under `enabledPlugins` in a settings file (project settings switch it off for one project).
 
-A favorite that should not load everywhere stays installed but disabled, and is enabled per project (`claude plugin enable <name>@givememod-favorites --scope project`).
+Where an organization sets a plugin allowlist (`strictKnownMarketplaces`) without a `{ "source": "skills-dir" }` entry, skills-directory plugins do not load: use the dev-mods copy for the session and say why. A `--plugin-dir` or installed plugin of the same name wins over the skills folder; the copy in `~/.claude/skills/` wins over the project's. To share a favorite beyond one repository, give it a marketplace (the "Share a mod" row below).
 
 ## Other requests
 
@@ -121,6 +122,7 @@ A favorite that should not load everywhere stays installed but disabled, and is 
 | `references/landscape.md` | what people build and why, with links to the best mods |
 | `references/techniques.md` | how the best mods solve recurring problems: band sharing, animation, surfaces, guards, model calls, state across sessions |
 | `references/resources.md` | glyphs, palettes, icons, sprites, sounds, data tables, helper files to copy, tools around mods, with licences |
+| `references/api-index.md` | every event, `$` method and `next` field, one line each (Claude Code 2.1.293; rebuilt by `scripts/api_index.py`) |
 | `references/catalog/mods.tsv` | every public mod: stars, link, hooks, `$` calls, reach, description |
 | `references/official/` | the official documentation |
 | `references/sources.md` | where everything comes from, and how to refresh it |

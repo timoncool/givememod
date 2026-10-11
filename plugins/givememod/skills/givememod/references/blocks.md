@@ -153,7 +153,7 @@ on('turn.step', async function* ($, e, next) {
 
 ```js
 on('tool.call', { tool: 'Bash' }, async ($, e, next) => {
-  if (/\bgit\s+push\b.*--force\b/.test(String(e.command)))
+  if (/\bgit\s+push\b.*--force(?!-with-lease)\b/.test(String(e.command)))
     return { deny: 'Force pushes are blocked here. Push a new branch.' }   // the model reads it: write an instruction
   return next(e)
 }).catch(($, e, next) => (next.called ? next(e) : { deny: 'The guard failed, so the command was not run.' }))

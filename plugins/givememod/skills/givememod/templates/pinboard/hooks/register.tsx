@@ -12,15 +12,17 @@ async function storeKey($: EngineInterface): Promise<string> {
   return `pins:${await $.session.root().catch(() => '')}`
 }
 
-async function save($: EngineInterface, list: Pin[]): Promise<void> {
-  await update($, pins, () => list)
-  await $.store.set(await storeKey($), list).catch(() => {})
+async function change($: EngineInterface, fn: (list: Pin[]) => Pin[]): Promise<void> {
+  await update($, pins, fn)
+  await $.store.set(await storeKey($), await read($, pins)).catch(() => {})
 }
 
 async function add($: EngineInterface, kind: Pin['kind'], text: string): Promise<Pin> {
-  const list = await read($, pins)
-  const pin = { id: Math.max(0, ...list.map(p => p.id)) + 1, kind, text, done: false }
-  await save($, [...list, pin].slice(-100))
+  let pin: Pin = { id: 0, kind, text, done: false }
+  await change($, list => {
+    pin = { id: Math.max(0, ...list.map(p => p.id)) + 1, kind, text, done: false }
+    return [...list, pin].slice(-100)
+  })
   return pin
 }
 
@@ -38,7 +40,7 @@ export const register: Register = on => {
         required: ['kind', 'text'],
       },
       isDeferred: false,
-    })
+    }).catch(err => $.ui.log(`pinboard: pin tool not registered: ${String(err)}`, { to: 'debug' }))
     await $.command
       .register({ name: 'pin', description: 'Open the pinboard, or pin a note: /pin <text>', argumentHint: '[text]', immediate: true })
       .catch(() => {})
@@ -92,7 +94,7 @@ export const register: Register = on => {
               key={`done-${p.id}`}
               plain
               label={p.done ? '✓' : '○'}
-              onPress={() => void save($, list.map(x => (x.id === p.id ? { ...x, done: !x.done } : x))).catch(() => {})}
+              onPress={() => void change($, l => l.map(x => (x.id === p.id ? { ...x, done: !x.done } : x))).catch(() => {})}
             />
             <Text color={p.kind === 'decision' ? 'claude' : p.kind === 'todo' ? 'warning' : 'inactive'}>{p.kind}</Text>
             <Text dimColor={p.done} wrap="wrap">{p.text}</Text>

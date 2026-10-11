@@ -30,3 +30,13 @@ test('a dismissed question refuses', async ($, on) => {
   const r = await $.tool.call({ tool: 'Bash', command: 'git reset --hard HEAD~3' })
   expect(r.deny).toBeDefined()
 })
+
+test('split and long rm flags and TRUNCATE without TABLE are held; rm without -r is not', async ($, on) => {
+  answering(on, () => 'Refuse')
+  for (const command of ['rm -r -f build', 'rm --recursive --force dist', 'psql -c "TRUNCATE users;"']) {
+    const r = await $.tool.call({ tool: 'Bash', command })
+    expect(r.deny).toContain('did not approve')
+  }
+  const single = await $.tool.call({ tool: 'Bash', command: 'rm -f notes.txt' })
+  expect(single.deny).toBeUndefined()
+})

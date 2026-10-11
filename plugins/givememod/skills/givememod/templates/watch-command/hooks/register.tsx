@@ -18,7 +18,9 @@ async function poll($: EngineInterface): Promise<void> {
   let exitCode: number | null = null
   let line = ''
   try {
-    const r = await $.process.run(w.argv, { timeoutMs: Math.min(w.everyMs, 120_000) })
+    const isWindows = (await $.env.get('OS').catch(() => undefined)) === 'Windows_NT'
+    const argv = isWindows ? ['cmd', '/d', '/s', '/c', w.argv.join(' ')] : w.argv
+    const r = await $.process.run(argv, { timeoutMs: Math.min(w.everyMs, 120_000) })
     exitCode = r.exitCode
     line = lastLine(r.stdout || r.stderr)
   } catch (err) {
@@ -53,6 +55,7 @@ export const register: Register = on => {
       return { text: 'Watch stopped.' }
     }
     const seconds = /^\d+$/.test(words[0] ?? '') ? Number(words.shift()) : DEFAULT_EVERY_MS / 1000
+    if (words.length === 0) return { text: 'Usage: /watch [seconds] <command> · /watch stop' }
     const everyMs = Math.max(5, seconds) * 1000
     timer?.cancel()
     await update($, watch, () => ({ argv: words, everyMs, exitCode: null, lastLine: '', at: 0 }))

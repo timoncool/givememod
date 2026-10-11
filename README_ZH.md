@@ -27,7 +27,7 @@ givememod 是一个 Claude Code skill，按需制作 Claude Code mod。它读取
 - **读懂情境** — 有计划在执行、改动文件多、长时间任务、危险命令、子代理、等待 CI、回答结尾带选项：它会提出合适的 mod；遇到长任务时也会主动提一次
 - **11 个测试过的模板** — 计划进度、已修改文件、上下文仪表、每轮回执、目标固定、危险命令拦截、命令监视、回答选项按钮、带 Claude 工具的置顶板、计时器、空白起步模板；全部通过 `claude plugin validate` 和自带测试
 - **实时加载** — 写入会话的 mods 目录，回答结束时出现；每次修改同样自动重载
-- **收藏** — 说一句"留下它"，mod 进入你自己的本地 marketplace，下次遇到类似任务会优先推荐
+- **收藏** — 说一句"留下它"，mod 进入你的 skills 文件夹，Claude Code 无需安装即在每个会话中加载，下次遇到类似任务会优先推荐
 - **完整资料库** — 29 个带代码的构建块、绘制手册、所有已知的坑与官方限制、测试工具说明、第三方 mod 审查清单
 - **3057 个公开 mod 的地图** — 大家做了什么、为什么、怎么做，每类任务的最佳示例，全部附链接
 - **优秀 mod 的经验** — 逐文件读过 222 个 mod 仓库：值得复用的技巧、字符、配色、图标、像素图、音效、辅助代码和工具，均注明来源和许可证
@@ -76,7 +76,7 @@ mod 需要 Claude Code 2.1.287+（桌面版 Code 标签页 2.1.286+）。插件�
 | `focus-timer` | 输入框上方的倒计时 |
 | `starter` | 其他需求用的空白骨架 |
 
-**保留一个 mod**：说"留下这个"。它会被复制到 `~/.claude/givememod/mods/`，写入本地 marketplace 和 `FAVORITES.md`；用 `claude plugin install <名称>@givememod-favorites` 安装一次，之后每个会话都能用。
+**保留一个 mod**：说"留下这个"。它会被复制到 `~/.claude/skills/<名称>/`（只在一个项目里用就放到项目的 `.claude/skills/`），并记入 `~/.claude/givememod/FAVORITES.md`。那里带 `plugin.json` 的文件夹会从下一个会话起以 `<名称>@skills-dir` 加载，无需安装；用 `claude plugin disable <名称>@skills-dir` 关闭。
 
 **其他能力**：解释 mod 为什么不起作用；安装前审查第三方 mod（能访问什么、每回合成本多少）；根据公开 mod 地图回答"谁已经做过 X？"。
 
@@ -94,6 +94,7 @@ mod 需要 Claude Code 2.1.287+（桌面版 Code 标签页 2.1.286+）。插件�
 | `references/landscape.md` | 3057 个公开 mod 的拆解：17 类任务、机制、最佳示例、值得借鉴的点子、哪里拥挤哪里空白 |
 | `references/techniques.md` | 优秀 mod 如何解决常见问题，每个技巧都链接到对应文件 |
 | `references/resources.md` | 公开 mod 中的字符、配色、图标、像素图、音效、数据表、辅助代码和工具，附许可证 |
+| `references/api-index.md` | API 的每个事件、`$` 方法和 `next` 字段，各一行，由该版本的类型文件生成 |
 | `references/catalog/mods.tsv` | 每个公开 mod 的星数、链接、hooks、调用和权限范围 |
 | `templates/` | 11 个带测试的 mod |
 | `examples/` | Anthropic 的示例 mod 和社区优秀 mod，附许可证 |
@@ -105,7 +106,7 @@ mod 需要 Claude Code 2.1.287+（桌面版 Code 标签页 2.1.286+）。插件�
 3. **构建**：把模板复制到本会话的 mods 文件夹，用构建块按加载器的规则改写。
 4. **检查**：在你看到之前运行 `claude plugin validate` 和 `claude plugin test`。
 5. **调整**：更短、放到输入框下方、放进侧边栏、只在 Claude 工作时显示、换颜色、执行 X 前先问。
-6. **收藏**：保留的 mod 进入你的本地 marketplace，下次优先推荐。
+6. **收藏**：保留的 mod 进入你的 skills 文件夹，每个会话都会加载，下次优先推荐。
 
 ## [@timoncool](https://github.com/timoncool) 的其他项目
 

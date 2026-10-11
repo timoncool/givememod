@@ -4,7 +4,7 @@ import type { EngineInterface, Register } from 'claude-code'
 import type { StarterTurn } from '../types'
 
 const PLUGIN = 'starter-mod'
-const BLOCKED = /\bgit\s+push\b.*--force\b/
+const BLOCKED = /\bgit\s+push\b.*--force(?!-with-lease)\b/
 
 const last = atom({ plugin: 'starter-mod', key: 'last' } as const, null as StarterTurn | null)
 const isHidden = atom({ plugin: 'starter-mod', key: 'isHidden' } as const, false)

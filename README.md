@@ -27,7 +27,7 @@ Since October 2026 Claude Code has [mods](https://code.claude.com/docs/en/plugin
 - **Reads the situation** — plan in play, many files, long jobs, risky commands, subagents, waiting on CI, answers ending in options: it proposes the mod that fits, and on a long task offers one by itself, once
 - **11 tested templates** — plan progress, files touched, context gauge, turn receipt, goal pin, risky-command hold, command watcher, reply buttons, pinboard with a tool for Claude, focus timer, blank starter; each passes `claude plugin validate` and its tests
 - **Loads live** — written into the session's mods folder, it appears when the reply ends; every tweak reloads the same way
-- **Favorites** — keep a mod and it lands in your own local marketplace; the next time a similar task comes up it is proposed first
+- **Favorites** — keep a mod and it goes to your skills folder, where Claude Code loads it in every session with no install; the next time a similar task comes up it is proposed first
 - **The whole corpus inside** — 29 building blocks with code, a drawing cookbook, every documented trap with the official limits, the test kit, a review checklist for third-party mods
 - **A map of 3,057 public mods** — what people build, why, how, and the best example for each job, every one linked
 - **What the best mods know** — 222 mod repositories read file by file: the techniques, glyphs, palettes, icons, sprites, sounds, helper files and tools worth reusing, each with its source and licence
@@ -76,7 +76,7 @@ The first time a mod is written in a session, Claude Code asks **Enable hot relo
 | `focus-timer` | a countdown above the prompt |
 | `starter` | the blank skeleton for anything else |
 
-**Keep a mod**: say "keep this one". It is copied to `~/.claude/givememod/mods/`, listed in a local marketplace and in `FAVORITES.md`; install it once with `claude plugin install <name>@givememod-favorites` and it is yours in every session.
+**Keep a mod**: say "keep this one". It is copied to `~/.claude/skills/<name>/` (or to the project's `.claude/skills/` to keep it for one project) and noted in `~/.claude/givememod/FAVORITES.md`. Claude Code loads a folder there with a `plugin.json` as `<name>@skills-dir` from the next session, with nothing to install; `claude plugin disable <name>@skills-dir` switches it off.
 
 **Other things it does**: explains why a mod does nothing, reviews a third-party mod before you install it (what it can reach, what it costs per turn), and answers "who already built X?" from the map of public mods.
 
@@ -94,6 +94,7 @@ The first time a mod is written in a session, Claude Code asks **Enable hot relo
 | `references/landscape.md` | 3,057 public mods decomposed: 17 jobs, the mechanisms, the best examples, ideas worth stealing, crowded vs open niches |
 | `references/techniques.md` | how the best mods solve recurring problems, each move linked to the file that does it |
 | `references/resources.md` | glyphs, palettes, icons, pixel art, sounds, data tables, helper files and tools from public mods, with licences |
+| `references/api-index.md` | every event, `$` method and `next` field of the API, one line each, generated from the types of the build |
 | `references/catalog/mods.tsv` | every public mod with stars, link, hooks, calls and reach |
 | `templates/` | 11 mods with tests |
 | `examples/` | Anthropic's sample mods and the best community mods, with licenses |
@@ -105,7 +106,7 @@ The first time a mod is written in a session, Claude Code asks **Enable hot relo
 3. **Build**: a template copied into the session's mods folder and adapted with the building blocks, following the rules the loader enforces.
 4. **Check**: `claude plugin validate` and `claude plugin test` before you see it.
 5. **Tune**: shorter, under the prompt, in a sidebar, only while Claude works, another colour, ask before X.
-6. **Favorite**: kept mods go to your local marketplace and are proposed first next time.
+6. **Favorite**: kept mods go to your skills folder, load in every session and are proposed first next time.
 
 ## Other Projects by [@timoncool](https://github.com/timoncool)
 

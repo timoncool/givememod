@@ -20,3 +20,24 @@ test('/watch polls, shows status and toasts on a change', async ($, on) => {
   const stop = await $.command.run({ command: 'watch', args: 'stop', origin: { kind: 'composer' }, presentation: { isFullscreen: false, columns: 120 } })
   expect(stop.text).toBe('Watch stopped.')
 })
+
+test('/watch with seconds and no command explains the usage instead of watching nothing', async ($, on) => {
+  mock.clock(on, { now: 0 })
+  on('session.start', ($, e) => ({ cwd: e.cwd }))
+  on('command.register', () => ({ value: { command: 'watch' } }))
+  await $.session.start({ cwd: '/tmp', surface: 'terminal', isInteractive: true })
+  const r = await $.command.run({ command: 'watch', args: '10', origin: { kind: 'composer' }, presentation: { isFullscreen: false, columns: 120 } })
+  expect(r.text).toContain('Usage')
+})
+
+test('on Windows the command runs through cmd /c', async ($, on) => {
+  mock.clock(on, { now: 0 })
+  const runs: string[][] = []
+  on('session.start', ($, e) => ({ cwd: e.cwd }))
+  on('command.register', () => ({ value: { command: 'watch' } }))
+  on('env.get', () => ({ value: 'Windows_NT' }))
+  on('process.run', ($, e) => (runs.push([...e.argv]), { value: { exitCode: 0, stdout: 'ok\n', stderr: '', isStdoutTruncated: false, isStderrTruncated: false } }))
+  await $.session.start({ cwd: '/tmp', surface: 'terminal', isInteractive: true })
+  await $.command.run({ command: 'watch', args: 'npm test', origin: { kind: 'composer' }, presentation: { isFullscreen: false, columns: 120 } })
+  expect(runs[0]).toEqual(['cmd', '/d', '/s', '/c', 'npm test'])
+})

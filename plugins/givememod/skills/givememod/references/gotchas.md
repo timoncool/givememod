@@ -77,7 +77,7 @@ What still reaches the model: `prompt.submit` context, tool-result `context`, `t
 | Import refused | the file is outside the plugin folder, symlinks included | copy shared code into each mod |
 | Module refused | bigger than 1 MiB *(reported)* | move heavy code to a script run by `$.process.run` |
 | `$.env.get(name)` refused | a variable name | a string literal at each call site |
-| Two plugins of the same name, both load or the wrong one runs | an installed copy plus `--plugin-dir`, or plus `CLAUDE_CODE_PLUGIN_DIRS` *(reported)* | load a mod in development one way only |
+| Two plugins of the same name, the wrong one runs | one name loads once, in this order: managed `enabledPlugins`, then `--plugin-dir`/`CLAUDE_CODE_PLUGIN_DIRS` (replaces an installed copy silently, a skills-folder copy with an Errors row in `/plugin`), then installed, then `~/.claude/skills/`, then the project's `.claude/skills/` (official `plugins/loading`, "name conflicts") | load a mod in development one way only; `claude --debug` logs `Plugin "<name>" from --plugin-dir overrides installed version` |
 | Marketplace install runs `npm install` / `npm ci` | a `package.json` or lockfile in the plugin folder *(reported)* | keep dev tooling out of the shipped plugin folder |
 | `validate --strict` warns | a `CLAUDE.md` at the plugin root *(reported)* | keep notes in `.claude/` |
 | `claude plugin details` shows `Hooks (0)` | it counts settings-style hooks only *(reported)* | trust `validate`'s `hooks:` line |
@@ -197,6 +197,7 @@ What still reaches the model: `prompt.submit` context, tool-result `context`, `t
 | Symptom | Cause | Fix |
 |---|---|---|
 | Edits do not take effect | editing an installed copy (cached by version) | develop with `--plugin-dir`; for a local marketplace folder, `/reload-plugins` re-reads it |
+| A mod kept in `~/.claude/skills/<name>/` or `.claude/skills/<name>/` does not load | the folder lacks `.claude-plugin/plugin.json`; an organization allowlist (`strictKnownMarketplaces`) has no `{ "source": "skills-dir" }` entry; or `"<name>@skills-dir": false` in settings | `/plugin` names the cause; skills-folder plugins load in place from the next session start or `/reload-plugins` (official `plugins/loading`, `plugins/org`) |
 | Users never get the update | `version` not bumped | bump it every release |
 | `Plugin "x" not found in marketplace "y"` | `y` must be the `name` in `marketplace.json` | use that name after `@` |
 | `/plugin install` says not available | the desktop Code tab has no `/plugin` command | install from a terminal; a user-scope install loads in desktop sessions |

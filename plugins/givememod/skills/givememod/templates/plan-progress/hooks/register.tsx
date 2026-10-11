@@ -43,11 +43,10 @@ export const register: Register = on => {
     const r = await next(e)
     if (e.agentId !== undefined || r.deny !== undefined || r.isError === true) return r
     const created = (r.result as { task?: { id?: string } } | undefined)?.task
-    const id = created?.id ?? `t${Date.now()}`
-    await update($, tasks, list => [
-      ...list.filter(t => t.id !== id),
-      { id, title: e.subject, active: e.activeForm || e.subject, status: 'pending' as const },
-    ])
+    await update($, tasks, list => {
+      const id = created?.id ?? String(list.length + 1)
+      return [...list.filter(t => t.id !== id), { id, title: e.subject, active: e.activeForm || e.subject, status: 'pending' as const }]
+    })
     return r
   })
 
@@ -69,11 +68,6 @@ export const register: Register = on => {
           ),
     )
     return r
-  })
-
-  on('classic.SessionStart', { source: ['clear', 'resume', 'fork'] }, async ($, e, next) => {
-    await update($, tasks, () => [])
-    return next(e)
   })
 
   on('command.run', { command: 'plan-progress' }, async $ => {

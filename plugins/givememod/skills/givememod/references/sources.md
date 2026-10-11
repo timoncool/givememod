@@ -55,6 +55,9 @@ To read a repository the same way: `gh api repos/<owner>/<repo>/git/trees/<branc
 | [dbrownjave/claude-token-saver › mod-authoring](https://github.com/dbrownjave/claude-token-saver/tree/main/.claude/skills/mod-authoring) | desktop rules learned from bugs |
 | [codecast-sh/codecast › cast-mod](https://github.com/codecast-sh/codecast/tree/main/packages/cli/skills/cast-mod) | a different product's "mod" system (not Claude Code), useful contrast |
 | [promptadvisers/claude-mods-starter-kit](https://github.com/promptadvisers/claude-mods-starter-kit) | ten mods with beginner guides and a build-your-own template |
+| [ngicks/agents-package › mods/statusline](https://github.com/ngicks/agents-package/tree/main/mods/statusline) | a skill folder that is also a mod (`@skills-dir`), a status row under the hint line with a width budget |
+| [ngicks/crabswarm › mods/handle-events](https://github.com/ngicks/crabswarm/tree/main/mods/handle-events) | an outside event stream fed into the session between turns, with acks and restarts; options through `pluginConfigs["<name>@skills-dir"]` |
+| [ucsandman/claude-harness › labs/claude-mods](https://github.com/ucsandman/claude-harness/tree/main/labs/claude-mods) | a snapshot of the official `plugin-authoring` skill from 2.1.273, useful to see what changed since |
 
 ## Going deeper on a topic
 

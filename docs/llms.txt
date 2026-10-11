@@ -2,7 +2,7 @@
 
 > A Claude Code skill that reads the conversation, proposes the small mod that fits it, builds it from tested templates, loads it live in the terminal and the desktop app, and keeps the ones you like.
 
-givememod is a Claude Code skill packaged as a plugin. On `/givememod` (or "make me a mod") it reads the conversation, proposes the smallest mod that fits, copies one of 11 tested templates into the session's dev-mods folder, adapts it with 29 building blocks, checks it with `claude plugin validate` and `claude plugin test`, and lets Claude Code hot-reload it. Kept mods go to `~/.claude/givememod/` as a local marketplace.
+givememod is a Claude Code skill packaged as a plugin. On `/givememod` (or "make me a mod") it reads the conversation, proposes the smallest mod that fits, copies one of 11 tested templates into the session's dev-mods folder, adapts it with 29 building blocks, checks it with `claude plugin validate` and `claude plugin test`, and lets Claude Code hot-reload it. Kept mods go to `~/.claude/skills/<name>/`, where Claude Code loads them as `<name>@skills-dir` with no install.
 
 - Install: `claude plugin marketplace add timoncool/givememod`, then `claude plugin install givememod@givememod` in any terminal (inside a terminal session `/plugin install givememod@givememod` works too).
 - Needs Claude Code 2.1.287+ in the terminal, 2.1.286+ in the desktop Code tab.
