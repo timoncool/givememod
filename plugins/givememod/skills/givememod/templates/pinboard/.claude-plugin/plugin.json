@@ -1,0 +1,7 @@
+{
+  "name": "pinboard",
+  "version": "0.1.0",
+  "description": "A pinboard beside the chat: Claude pins decisions, todos and links through its own tool, you pin with /pin; kept per project. One count above the prompt",
+  "author": { "name": "timoncool" },
+  "types": "./types/index.d.ts"
+}

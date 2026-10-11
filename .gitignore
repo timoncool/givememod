@@ -1,0 +1,6 @@
+node_modules/
+.claude-plugin/types/
+**/.claude-plugin/types/
+__pycache__/
+plugins/givememod/skills/givememod/references/official/*.md
+!plugins/givememod/skills/givememod/references/official/README.md

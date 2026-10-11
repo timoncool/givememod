@@ -1,0 +1,7 @@
+{
+  "name": "watch-command",
+  "version": "0.1.0",
+  "description": "/watch <command> reruns a command on a timer and shows its state under the prompt; a toast when the result changes. No model calls",
+  "author": { "name": "timoncool" },
+  "types": "./types/index.d.ts"
+}

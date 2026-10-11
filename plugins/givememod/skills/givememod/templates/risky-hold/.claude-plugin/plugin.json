@@ -1,0 +1,7 @@
+{
+  "name": "risky-hold",
+  "version": "0.1.0",
+  "description": "Holds a risky shell command (rm -rf, reset --hard, force push, DROP, migrations) until you answer Run or Refuse. Fails closed",
+  "author": { "name": "timoncool" },
+  "types": "./types/index.d.ts"
+}

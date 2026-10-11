@@ -1,0 +1,7 @@
+{
+  "name": "goal-pin",
+  "version": "0.1.0",
+  "description": "Pin the goal of this conversation above the prompt with a timer: /goal <text> to set, /goal done to clear. Claude reads the goal once, when it is set",
+  "author": { "name": "timoncool" },
+  "types": "./types/index.d.ts"
+}

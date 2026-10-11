@@ -1,0 +1,7 @@
+{
+  "name": "starter-mod",
+  "version": "0.1.0",
+  "description": "Template: a band above the prompt, a /starter toggle kept across sessions, a guarded Bash hook",
+  "author": { "name": "timoncool" },
+  "types": "./types/index.d.ts"
+}

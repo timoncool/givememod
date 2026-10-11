@@ -1,0 +1,7 @@
+{
+  "name": "turn-receipt",
+  "version": "0.1.0",
+  "description": "A one-line receipt under each answer: time, tool calls by tool, files changed, failures; a toast when a long turn ends. No model calls",
+  "author": { "name": "timoncool" },
+  "types": "./types/index.d.ts"
+}

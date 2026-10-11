@@ -1,0 +1,7 @@
+{
+  "name": "focus-timer",
+  "version": "0.1.0",
+  "description": "A countdown above the prompt: /timer 25 starts it, a toast when it ends, Pause and Stop buttons. For focus blocks, deadlines and break reminders",
+  "author": { "name": "timoncool" },
+  "types": "./types/index.d.ts"
+}

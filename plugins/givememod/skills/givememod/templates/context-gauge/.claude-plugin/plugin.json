@@ -1,0 +1,7 @@
+{
+  "name": "context-gauge",
+  "version": "0.1.0",
+  "description": "Context window fill as one line above the prompt, with the last turns as a sparkline and a warning colour near the limit. No model calls",
+  "author": { "name": "timoncool" },
+  "types": "./types/index.d.ts"
+}

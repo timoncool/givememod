@@ -1,0 +1,31 @@
+{
+  "name": "givememod",
+  "owner": {
+    "name": "timoncool",
+    "url": "https://github.com/timoncool"
+  },
+  "metadata": {
+    "description": "givememod: a skill that builds a Claude Code mod for the conversation you are in."
+  },
+  "plugins": [
+    {
+      "name": "givememod",
+      "source": "./plugins/givememod",
+      "description": "Say /givememod and get a Claude Code mod for the task in front of you: a plan bar, a files counter, a guard, a watcher, a pinboard. Built from tested templates, loaded live, tuned to taste; the ones you like become favorites. With the official mods docs, 29 building blocks, techniques and resources from 222 mod repositories, and a map of 3,057 public mods.",
+      "version": "1.0.0",
+      "author": {
+        "name": "timoncool"
+      },
+      "category": "development",
+      "keywords": [
+        "claude-mods",
+        "mods",
+        "function-hooks",
+        "skill",
+        "ui",
+        "statusline",
+        "progress-bar"
+      ]
+    }
+  ]
+}

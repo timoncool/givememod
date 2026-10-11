@@ -1,0 +1,7 @@
+{
+  "name": "plan-progress",
+  "version": "0.1.0",
+  "description": "Claude's own task list as a progress bar above the prompt, read from its todo and task tools: no model calls, no tokens",
+  "author": { "name": "timoncool" },
+  "types": "./types/index.d.ts"
+}

@@ -1,0 +1,7 @@
+{
+  "name": "reply-choices",
+  "version": "0.1.0",
+  "description": "When an answer ends with numbered options, they become buttons above the prompt: a digit in an empty prompt or a click puts the option into the prompt box. No model calls",
+  "author": { "name": "timoncool" },
+  "types": "./types/index.d.ts"
+}

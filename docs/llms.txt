@@ -1,0 +1,30 @@
+# givememod
+
+> A Claude Code skill that reads the conversation, proposes the small mod that fits it, builds it from tested templates, loads it live in the terminal and the desktop app, and keeps the ones you like.
+
+givememod is a Claude Code skill packaged as a plugin. On `/givememod` (or "make me a mod") it reads the conversation, proposes the smallest mod that fits, copies one of 11 tested templates into the session's dev-mods folder, adapts it with 29 building blocks, checks it with `claude plugin validate` and `claude plugin test`, and lets Claude Code hot-reload it. Kept mods go to `~/.claude/givememod/` as a local marketplace.
+
+- Install: `claude plugin marketplace add timoncool/givememod`, then `claude plugin install givememod@givememod` in any terminal (inside a terminal session `/plugin install givememod@givememod` works too).
+- Needs Claude Code 2.1.287+ in the terminal, 2.1.286+ in the desktop Code tab.
+- Inside: the decomposition of 3,057 public mods, techniques and reusable assets from 222 mod repositories read file by file, gotchas with the official limits, a test-kit guide, a review checklist.
+
+## Situations and mods
+
+- A plan drives the work → `plan-progress`: Plan ███████░░░░░ 3/5 · Fixing the session check
+- Risky commands ahead → `risky-hold`: Run this recursive delete? rm -rf build/ dist/
+- Tests run long → `watch-command`: watch: npm test → exit 1
+- The context fills up → `context-gauge`: Context 71% 142k / 200k ▁▂▃▄▅▆▇
+- Many files are changing → `files-touched`: Files: 12 read · 9 edited · 1 new · /files
+- Answers end with options → `reply-choices`: 1: Keep Postgres   2: Move to Redis
+- Long autonomous turns → `turn-receipt`: 1m 15s · 3 tool calls (Edit 2, Bash 1) · 1 failed
+- The goal drifts → `goal-pin`: Goal ship the login fix  12m
+- Decisions pile up → `pinboard`: Claude pins decisions with its own tool, in a pane
+- A deadline or a break → `focus-timer`: 18:42 review [pause] [stop]
+
+## Links
+
+- [Repository](https://github.com/timoncool/givememod)
+- [Page in English](https://timoncool.github.io/givememod/)
+- [Page in Russian](https://timoncool.github.io/givememod/ru.html)
+- [Page in Chinese](https://timoncool.github.io/givememod/zh.html)
+- [Changelog](https://github.com/timoncool/givememod/blob/main/CHANGELOG.md)

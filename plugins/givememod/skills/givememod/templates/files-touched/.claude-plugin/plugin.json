@@ -1,0 +1,7 @@
+{
+  "name": "files-touched",
+  "version": "0.1.0",
+  "description": "Files Claude read, edited and created this session: one line above the prompt and a /files pane. No model calls",
+  "author": { "name": "timoncool" },
+  "types": "./types/index.d.ts"
+}

@@ -1,0 +1,202 @@
+<!doctype html>
+<html lang="zh">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>givememod：为手头任务定制的 Claude Code mod</title>
+<meta name="description" content="一个 Claude Code skill：读懂对话，提出合适的小 mod，用测试过的模板构建，在终端和桌面版中实时加载，并保留你喜欢的那些。" />
+<meta name="robots" content="index, follow, max-image-preview:large" />
+<meta name="author" content="Nerual Dreming" />
+<meta name="theme-color" content="#111214" />
+<meta name="color-scheme" content="dark" />
+<link rel="canonical" href="https://timoncool.github.io/givememod/zh.html" />
+<link rel="alternate" hreflang="en" href="https://timoncool.github.io/givememod/" /><link rel="alternate" hreflang="ru" href="https://timoncool.github.io/givememod/ru.html" /><link rel="alternate" hreflang="zh" href="https://timoncool.github.io/givememod/zh.html" /><link rel="alternate" hreflang="x-default" href="https://timoncool.github.io/givememod/" />
+<link rel="icon" href="favicon.ico" sizes="16x16 32x32 48x48" />
+<link rel="icon" type="image/png" sizes="192x192" href="icon-192.png" />
+<link rel="apple-touch-icon" href="apple-touch-icon.png" />
+<link rel="manifest" href="site.webmanifest" />
+<link rel="preload" href="site/fonts/cascadia-mono.woff2" as="font" type="font/woff2" crossorigin />
+<link rel="preload" as="image" href="teaser-zh.jpg" fetchpriority="high" />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="givememod" />
+<meta property="og:title" content="givememod：为手头任务定制的 Claude Code mod" />
+<meta property="og:description" content="一个 Claude Code skill：读懂对话，提出合适的小 mod，用测试过的模板构建，在终端和桌面版中实时加载，并保留你喜欢的那些。" />
+<meta property="og:url" content="https://timoncool.github.io/givememod/zh.html" />
+<meta property="og:locale" content="zh_CN" />
+<meta property="og:locale:alternate" content="en_US" /><meta property="og:locale:alternate" content="ru_RU" />
+<meta property="og:image" content="https://timoncool.github.io/givememod/og-zh.jpg" />
+<meta property="og:image:type" content="image/jpeg" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:image:alt" content="输入 /givememod，得到适合当前任务的 mod。" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="givememod：为手头任务定制的 Claude Code mod" />
+<meta name="twitter:description" content="一个 Claude Code skill：读懂对话，提出合适的小 mod，用测试过的模板构建，在终端和桌面版中实时加载，并保留你喜欢的那些。" />
+<meta name="twitter:image" content="https://timoncool.github.io/givememod/og-zh.jpg" />
+<meta name="twitter:image:alt" content="输入 /givememod，得到适合当前任务的 mod。" />
+<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "SoftwareApplication", "@id": "https://timoncool.github.io/givememod/#app", "name": "givememod", "url": "https://timoncool.github.io/givememod/zh.html", "inLanguage": "zh", "description": "一个 Claude Code skill：读懂对话，提出合适的小 mod，用测试过的模板构建，在终端和桌面版中实时加载，并保留你喜欢的那些。", "applicationCategory": "DeveloperApplication", "applicationSubCategory": "Claude Code skill", "operatingSystem": "Windows, macOS, Linux", "softwareVersion": "1.0.0", "isAccessibleForFree": true, "license": "https://opensource.org/licenses/MIT", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}, "image": "https://timoncool.github.io/givememod/og-zh.jpg", "codeRepository": "https://github.com/timoncool/givememod", "sameAs": ["https://github.com/timoncool/givememod"], "downloadUrl": "https://github.com/timoncool/givememod", "author": {"@id": "https://github.com/timoncool#person"}, "dateModified": "2026-10-11"}, {"@type": "Person", "@id": "https://github.com/timoncool#person", "name": "Nerual Dreming", "url": "https://github.com/timoncool", "sameAs": ["https://github.com/timoncool", "https://t.me/nerual_dreming", "https://artgeneration.me"]}, {"@type": "FAQPage", "inLanguage": "zh", "mainEntity": [{"@type": "Question", "name": "什么是 Claude Code mod？", "acceptedAnswer": {"@type": "Answer", "text": "一个带钩子模块、在 Claude Code 内部运行的插件。它可以在输入框上方绘制信息栏、打开面板、显示提示和状态行、在你回答前暂停工具调用、添加无需模型回合的命令，并为 Claude 提供工具。"}}, {"@type": "Question", "name": "会消耗 token 吗？", "acceptedAnswer": {"@type": "Answer", "text": "构建 mod 是一次普通的 Claude 回合。mod 本身不会调用模型（除非你要求），也不向上下文添加内容。"}}, {"@type": "Question", "name": "mod 存放在哪里？", "acceptedAnswer": {"@type": "Answer", "text": "临时 mod 位于会话的 mods 文件夹，随旧会话一起清理。保留的 mod 复制到 ~/.claude/givememod/mods 并列入本地 marketplace。"}}, {"@type": "Question", "name": "桌面版能用吗？", "acceptedAnswer": {"@type": "Answer", "text": "能，在 Claude Desktop 的 Code 标签页中。在终端安装一次插件，桌面会话里也能用这个 skill。"}}, {"@type": "Question", "name": "mod 安全吗？", "acceptedAnswer": {"@type": "Answer", "text": "mod 以你的权限运行。每个模板都很小且易读，守卫在出错时拒绝执行，第三方 mod 在加载前会被审查。"}}, {"@type": "Question", "name": "能分享我做的 mod 吗？", "acceptedAnswer": {"@type": "Answer", "text": "能。在 plugin.json 旁放一个 marketplace 文件，就可以用 /plugin install <mod> --marketplace <owner>/<repo> 安装。"}}]}]}</script>
+<style>
+@font-face { font-family: 'Cascadia Mono'; src: url('site/fonts/cascadia-mono.woff2') format('woff2'); font-weight: 200 700; font-display: swap; }
+:root { --bg: #111214; --panel: #18191c; --panel-2: #1f2024; --line: #2a2b30; --text: #ececec; --muted: #9b9ea6; --accent: #d97757; --ok: #6cc58a; --warn: #e0b15a; --r: 14px; color-scheme: dark;
+  --sans: 'Segoe UI', system-ui, -apple-system, 'PingFang SC', 'Microsoft YaHei', sans-serif; --mono: 'Cascadia Mono', ui-monospace, Menlo, Consolas, monospace; }
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: 76px; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+body { margin: 0; background: var(--bg); color: var(--text); font: 400 17px/1.65 var(--sans); -webkit-font-smoothing: antialiased; }
+a { color: var(--accent); text-underline-offset: 3px; }
+a:focus-visible, button:focus-visible, summary:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 4px; }
+code, .mono { font-family: var(--mono); }
+.wrap { max-width: 1160px; margin: 0 auto; padding: 0 24px; }
+header { position: sticky; top: 0; z-index: 10; background: rgba(17,18,20,.9); backdrop-filter: blur(10px); border-bottom: 1px solid var(--line); }
+.bar { display: flex; align-items: center; gap: 22px; height: 62px; }
+.brand { display: flex; align-items: center; gap: 10px; color: var(--text); text-decoration: none; font-weight: 700; font-family: var(--mono); white-space: nowrap; }
+.brand img { width: 28px; height: 28px; border-radius: 7px; }
+.bar nav { display: flex; gap: 22px; margin-left: auto; }
+.bar nav a { color: var(--muted); text-decoration: none; font-size: 15px; white-space: nowrap; }
+.bar nav a:hover { color: var(--text); }
+.langs { display: flex; gap: 4px; }
+.langs a { color: var(--muted); font-size: 13px; text-decoration: none; border: 1px solid var(--line); border-radius: 7px; padding: 3px 9px; }
+.langs a[aria-current] { color: var(--text); border-color: var(--muted); }
+.gh { display: flex; align-items: center; gap: 8px; color: var(--text); text-decoration: none; font-size: 14px; }
+.hero { padding: 64px 0 40px; text-align: center; }
+h1 { margin: 0; font-size: clamp(32px, 4.6vw, 60px); line-height: 1.08; letter-spacing: -0.03em; font-weight: 800; }
+h1 code { color: var(--accent); font-weight: 700; }
+h1 .after { display: block; margin-top: 8px; color: var(--muted); font-weight: 700; }
+.lead { margin: 22px auto 0; color: var(--muted); font-size: 19px; max-width: 46em; }
+.cta { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; margin-top: 30px; }
+.btn { display: inline-flex; align-items: center; gap: 10px; height: 48px; padding: 0 22px; border-radius: 12px; font: inherit; font-weight: 600; text-decoration: none; white-space: nowrap; border: 1px solid var(--line); color: var(--text); background: var(--panel); cursor: pointer; transition: transform .12s ease, border-color .12s ease; }
+.btn:hover { border-color: var(--muted); }
+.btn:active { transform: translateY(1px); }
+.btn.primary { background: var(--accent); border-color: var(--accent); color: #1a0f0a; }
+.reel { margin: 44px auto 0; max-width: 1100px; border-radius: 16px; overflow: hidden; border: 1px solid var(--line); box-shadow: 0 30px 80px rgba(0,0,0,.45); }
+.reel video { display: block; width: 100%; height: auto; aspect-ratio: 1280 / 720; background: #0d0d0e; }
+section { padding: 80px 0; border-top: 1px solid var(--line); }
+h2 { margin: 0 0 12px; font-size: 32px; line-height: 1.2; letter-spacing: -0.02em; font-weight: 800; }
+.sub { margin: 0 0 34px; color: var(--muted); max-width: 64ch; }
+.why { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 40px; }
+.why p { margin: 0; }
+.cases { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+.case { padding: 18px 20px; border: 1px solid var(--line); border-radius: var(--r); background: var(--panel); display: grid; gap: 10px; min-width: 0; }
+.case .s { font-weight: 600; }
+.case .s::after { content: "  →  "; color: var(--muted); font-weight: 400; }
+.case .m { font-family: var(--mono); color: var(--accent); font-size: 15px; }
+.case .v { font-family: var(--mono); font-size: 14px; color: var(--muted); background: var(--panel-2); border-radius: 9px; padding: 9px 12px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.steps6 { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; counter-reset: s; }
+.steps6 li { counter-increment: s; padding: 22px; border: 1px solid var(--line); border-radius: var(--r); background: var(--panel); }
+.steps6 li::before { content: counter(s, decimal-leading-zero); display: block; font-family: var(--mono); color: var(--accent); font-size: 14px; margin-bottom: 10px; }
+.steps6 b { display: block; font-size: 18px; margin-bottom: 6px; }
+.steps6 span { color: var(--muted); font-size: 15.5px; }
+.stats { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 14px; }
+.stat { padding: 22px; border-radius: var(--r); background: var(--panel); border: 1px solid var(--line); }
+.stat b { display: block; font-size: 40px; line-height: 1; color: var(--accent); font-weight: 800; letter-spacing: -0.02em; }
+.stat span { display: block; margin-top: 12px; font-size: 15px; color: var(--muted); }
+.refs { margin-top: 30px; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 40px; }
+.refs div { display: grid; grid-template-columns: 11em minmax(0, 1fr); gap: 14px; padding: 12px 0; border-bottom: 1px solid var(--line); }
+.refs dt { font-family: var(--mono); color: var(--text); font-size: 15px; }
+.refs dd { margin: 0; color: var(--muted); font-size: 15px; }
+.where { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; }
+.where div { padding: 22px; border-radius: var(--r); border: 1px solid var(--line); }
+.where b { display: block; margin-bottom: 6px; font-size: 18px; }
+.where span { color: var(--muted); font-size: 15.5px; }
+.pc { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 40px; }
+.pc h3 { margin: 0 0 14px; font-size: 19px; }
+.pc ul { list-style: none; margin: 0; padding: 0; }
+.pc li { position: relative; padding: 0 0 14px 26px; }
+.pc li::before { position: absolute; left: 0; font-weight: 700; font-family: var(--mono); }
+.pros li::before { content: "+"; color: var(--ok); }
+.cons li::before { content: "-"; color: var(--warn); }
+.inst { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 40px; align-items: start; }
+.steps { list-style: none; margin: 0; padding: 0; display: grid; gap: 16px; counter-reset: i; }
+.steps li { counter-increment: i; min-width: 0; }
+.steps p { margin: 0 0 8px; }
+.steps p::before { content: counter(i) ". "; color: var(--accent); font-weight: 700; }
+.cmd { display: flex; align-items: center; gap: 12px; border: 1px solid var(--line); border-radius: 12px; background: var(--panel); padding: 10px 10px 10px 16px; }
+.cmd code { flex: 1; min-width: 0; overflow-x: auto; white-space: nowrap; font-size: 15px; }
+.cmd code::before { content: "> "; color: var(--accent); }
+.cmd button { flex: none; height: 32px; padding: 0 12px; border-radius: 8px; border: 1px solid var(--line); background: var(--panel-2); color: var(--muted); font: inherit; font-size: 13px; cursor: pointer; }
+.cmd button:hover { color: var(--text); border-color: var(--muted); }
+.say h3 { margin: 0 0 14px; font-size: 19px; }
+.say ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; }
+.say li { font-family: var(--mono); font-size: 15px; padding: 10px 14px; border-radius: 10px; background: var(--panel); border: 1px solid var(--line); overflow-x: auto; white-space: nowrap; }
+details { border-bottom: 1px solid var(--line); max-width: 900px; }
+summary { cursor: pointer; padding: 18px 0; font-weight: 600; list-style: none; display: flex; justify-content: space-between; gap: 16px; }
+summary::-webkit-details-marker { display: none; }
+summary::after { content: "+"; color: var(--accent); font-weight: 700; font-family: var(--mono); }
+details[open] summary::after { content: "-"; }
+details p { margin: 0 0 20px; color: var(--muted); max-width: 74ch; }
+.author { display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 4fr); gap: 40px; align-items: start; }
+.author p { margin: 0; max-width: 60ch; }
+.author ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; }
+footer { border-top: 1px solid var(--line); padding: 28px 0 40px; color: var(--muted); font-size: 14px; }
+footer .wrap { display: flex; flex-wrap: wrap; gap: 22px; }
+footer a { color: var(--muted); }
+footer span { margin-left: auto; }
+@media (max-width: 960px) {
+  .bar nav { display: none; }
+  .langs { margin-left: auto; }
+  .why, .pc, .inst, .author, .refs { grid-template-columns: 1fr; gap: 28px; }
+  .cases { grid-template-columns: 1fr; }
+  .steps6, .where { grid-template-columns: 1fr; }
+  .stats { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  section { padding: 60px 0; }
+}
+@media (max-width: 520px) {
+  .wrap { padding: 0 16px; }
+  .gh { display: none; }
+  .refs div { grid-template-columns: 1fr; gap: 2px; }
+  footer span { margin-left: 0; }
+}
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap bar">
+    <a class="brand" href="zh.html"><img src="icon-64.png" alt="" width="28" height="28" />givememod</a>
+    <nav aria-label="场景"><a href="#cases">场景</a><a href="#how">原理</a><a href="#inside">内容</a><a href="#install">安装</a><a href="#faq">问答</a></nav>
+    <div class="langs"><a href="index.html" hreflang="en" lang="en">EN</a><a href="ru.html" hreflang="ru" lang="ru">RU</a><a href="zh.html" hreflang="zh" lang="zh" aria-current="page">中文</a></div>
+    <a class="gh" href="https://github.com/timoncool/givememod"><span>GitHub</span><img src="https://img.shields.io/github/stars/timoncool/givememod?style=flat&amp;label=%E2%98%85&amp;color=2a2b30" alt="GitHub stars" height="20" /></a>
+  </div>
+</header>
+<main class="wrap">
+  <div class="hero">
+    <h1>输入 <code>/givememod</code>。<span class="after">得到适合这项任务的 mod。</span></h1>
+    <p class="lead">一个 Claude Code skill。它看你在做什么，构建合适的小 mod，在终端或桌面版中实时加载，并按你的意见调整。</p>
+    <div class="cta"><a class="btn primary" href="#install">安装</a><a class="btn" href="https://github.com/timoncool/givememod">在 GitHub 上加星<img src="https://img.shields.io/github/stars/timoncool/givememod?style=flat&amp;label=%E2%98%85&amp;color=2a2b30" alt="" height="20" /></a></div>
+    <figure class="reel"><video src="teaser-zh.mp4" poster="teaser-zh.jpg" muted loop playsinline controls preload="metadata" width="1280" height="720" aria-label="Claude Code 桌面版和终端中的七个任务；每次 /givememod 都构建合适的 mod。"></video></figure>
+  </div>
+
+  <section id="why"><h2>为什么</h2><div class="why"><p>Claude Code mod 是运行在 Claude Code 内部的小插件：输入框上方的信息栏、侧边面板、提示、暂停工具调用、立即响应的命令。几周内出现了 3000 多个公开 mod，几乎都是通用产品。</p><p>一项任务需要的更小、更短命：这次迁移的进度条、这次部署的保护、这组测试的监视器。givememod 一分钟写好它，并且知道那 3000 个 mod 积累的经验。</p></div></section>
+
+  <section id="cases"><h2>输入情境，得到 mod</h2><p class="sub">只输入 /givememod，它会读懂对话；加上文字可以提出具体要求。</p><div class="cases"><div class="case"><div><span class="s">工作按计划进行</span><span class="m">plan-progress</span></div><div class="v">计划 ███████░░░░░ 3/5 · 修复会话检查</div></div><div class="case"><div><span class="s">即将执行危险命令</span><span class="m">risky-hold</span></div><div class="v">要运行递归删除吗？rm -rf build/ dist/</div></div><div class="case"><div><span class="s">测试很慢</span><span class="m">watch-command</span></div><div class="v">watch: npm test → exit 1</div></div><div class="case"><div><span class="s">上下文快满了</span><span class="m">context-gauge</span></div><div class="v">Context 71% 142k / 200k ▁▂▃▄▅▆▇</div></div><div class="case"><div><span class="s">很多文件在变化</span><span class="m">files-touched</span></div><div class="v">文件：读取 12 · 修改 9 · 新建 1 · /files</div></div><div class="case"><div><span class="s">回答以选项结尾</span><span class="m">reply-choices</span></div><div class="v">1: 继续用 Postgres   2: 迁到 Redis</div></div><div class="case"><div><span class="s">长时间自主运行</span><span class="m">turn-receipt</span></div><div class="v">1m 15s · 3 次调用（Edit 2, Bash 1）· 失败 1</div></div><div class="case"><div><span class="s">目标偏离</span><span class="m">goal-pin</span></div><div class="v">目标：发布登录修复  12m</div></div><div class="case"><div><span class="s">决定越积越多</span><span class="m">pinboard</span></div><div class="v">Claude 用自己的工具置顶决定，显示在面板</div></div><div class="case"><div><span class="s">截止时间或休息</span><span class="m">focus-timer</span></div><div class="v">18:42 评审 [暂停] [停止]</div></div></div></section>
+
+  <section id="how"><h2>原理</h2><ol class="steps6"><li><b>读懂情境</b><span>你的请求、工作形态（计划、大量文件、长任务、危险命令、子代理）、会话状态、项目、你的收藏。</span></li><li><b>选出一个 mod</b><span>最小可用的 mod。输入 /givememod 会直接构建并给出备选；没人要求时，遇到长任务会用一行提出：显示什么、在哪里、成本多少。</span></li><li><b>用模板构建</b><span>11 个测试过的模板和 29 个构建块，遵循加载器的规则，写入本会话的 mods 文件夹。</span></li><li><b>检查</b><span>在你看到之前运行 claude plugin validate 和 claude plugin test。</span></li><li><b>实时加载</b><span>第一次 Claude Code 会询问是否为本会话启用热重载；之后每次修改都在回答结束时生效。</span></li><li><b>保留喜欢的</b><span>说&quot;留下它&quot;：mod 进入你的本地 marketplace，下次遇到类似任务时优先推荐。</span></li></ol></section>
+
+  <section id="inside"><h2>里面有什么</h2><p class="sub">skill 在写下第一行之前读过的全部内容。</p><div class="stats"><div class="stat"><b>3057</b><span>个公开 mod 的地图：做了什么、为什么、怎么做</span></div><div class="stat"><b>222</b><span>个 mod 仓库逐文件读过</span></div><div class="stat"><b>29</b><span>个带代码的构建块</span></div><div class="stat"><b>11</b><span>个带测试的模板</span></div></div><dl class="refs"><div><dt>picker</dt><dd>情境 → 模板、一行提议、常见调整</dd></div><div><dt>techniques</dt><dd>优秀 mod 如何共享信息栏、做动画、在各界面绘制、拦截调用、调用模型、保存状态</dd></div><div><dt>resources</dt><dd>字符、配色、图标、像素图、音效、辅助代码和工具，附许可证</dd></div><div><dt>gotchas</dt><dd>所有已知的坑、官方限制、内置守卫跳过的事件、未解决的 issue</dd></div><div><dt>landscape</dt><dd>人们写 mod 的 17 类任务、最佳示例、空白领域</dd></div><div><dt>review-and-cost</dt><dd>审查第三方 mod 并估算 token 成本</dd></div></dl></section>
+
+  <section id="where"><h2>在哪里可用</h2><div class="where"><div><b>终端</b><span>Claude Code 2.1.287+：信息栏、面板、状态行、提示、暂停的工具调用、命令。</span></div><div><b>桌面版</b><span>Claude Desktop 的 Code 标签页，2.1.286+：同样的 mod，绘制为卡片、面板和提示。</span></div><div><b>其他</b><span>claude -p、SDK 和 VS Code 面板中钩子也会运行，但不绘制任何内容。</span></div></div></section>
+
+  <section id="tradeoffs"><h2>优点和不足</h2><div class="pc"><div class="pros"><h3>优点</h3><ul><li>默认零 token：模板不调用模型，也不向上下文添加内容。</li><li>每个 mod 在你看到之前都通过 validate 和测试。</li><li>临时 mod 随会话结束而消失，保留的会一直跟着你。</li><li>安装第三方 mod 前先审查：能访问什么、成本多少、有什么风险。</li></ul></div><div class="cons"><h3>不足</h3><ul><li>mod 以你的权限运行；Bash 守卫是提醒，不是沙箱。</li><li>会话中第一个 mod 会请求启用热重载。</li><li>mod 只在终端和桌面版 Code 标签页中绘制；在 VS Code 和 claude -p 中钩子照常运行，但不绘制。</li><li>在 Claude Code 修复之前，拦截 Bash 的 mod 会让 worktree 子代理中的 Bash 失效。</li></ul></div></div></section>
+
+  <section id="install"><h2>安装</h2><div class="inst"><ol class="steps"><li><p>添加 marketplace（任意终端）</p><div class="cmd"><code>claude plugin marketplace add timoncool/givememod</code><button type="button" data-done="已复制">复制</button></div></li><li><p>安装插件</p><div class="cmd"><code>claude plugin install givememod@givememod</code><button type="button" data-done="已复制">复制</button></div></li><li><p>重启 Claude Code，然后在任意会话中</p><div class="cmd"><code>/givememod</code><button type="button" data-done="已复制">复制</button></div></li></ol><div class="say"><h3>可以这样说</h3><ul><li>/givememod</li><li>/givememod 在输入框上方显示计划进度</li><li>/givememod 任何 rm -rf 都先等我确认</li><li>/givememod 每 20 秒运行一次 npm test</li><li>留下这个</li><li>这个 mod 安装安全吗？</li></ul></div></div></section>
+
+  <section id="faq"><h2>问答</h2><details><summary>什么是 Claude Code mod？</summary><p>一个带钩子模块、在 Claude Code 内部运行的插件。它可以在输入框上方绘制信息栏、打开面板、显示提示和状态行、在你回答前暂停工具调用、添加无需模型回合的命令，并为 Claude 提供工具。</p></details><details><summary>会消耗 token 吗？</summary><p>构建 mod 是一次普通的 Claude 回合。mod 本身不会调用模型（除非你要求），也不向上下文添加内容。</p></details><details><summary>mod 存放在哪里？</summary><p>临时 mod 位于会话的 mods 文件夹，随旧会话一起清理。保留的 mod 复制到 ~/.claude/givememod/mods 并列入本地 marketplace。</p></details><details><summary>桌面版能用吗？</summary><p>能，在 Claude Desktop 的 Code 标签页中。在终端安装一次插件，桌面会话里也能用这个 skill。</p></details><details><summary>mod 安全吗？</summary><p>mod 以你的权限运行。每个模板都很小且易读，守卫在出错时拒绝执行，第三方 mod 在加载前会被审查。</p></details><details><summary>能分享我做的 mod 吗？</summary><p>能。在 plugin.json 旁放一个 marketplace 文件，就可以用 /plugin install &lt;mod&gt; --marketplace &lt;owner&gt;/&lt;repo&gt; 安装。</p></details></section>
+
+  <section id="author"><div class="author"><div><h2>作者</h2><p>Nerual Dreming。艺术家，ArtGeneration.me 和 Neuro-Cartel 社区的创始人，Angry Switcher、ACE-Step Studio、YuE2 Studio 和 MiniMax Music3 Studio 的作者。</p></div><ul><li><a href="https://github.com/timoncool" rel="me noopener">GitHub</a></li><li><a href="https://t.me/nerual_dreming" rel="me noopener">Telegram @nerual_dreming</a></li><li><a href="https://t.me/neuroport" rel="me noopener">Telegram @neuroport</a></li><li><a href="https://artgeneration.me" rel="me noopener">ArtGeneration.me</a></li><li><a href="https://github.com/timoncool/ACE-Step-Studio/blob/master/DONATE.md" rel="noopener">支持项目</a></li></ul></div></section>
+</main>
+<footer><div class="wrap"><a href="https://github.com/timoncool/givememod/blob/main/LICENSE">MIT 许可证</a><a href="https://github.com/timoncool/givememod/blob/main/CHANGELOG.md">更新日志</a><a href="https://github.com/timoncool/givememod/issues">报告问题</a><span>更新于 2026-10-11</span></div></footer>
+<script>
+document.querySelectorAll('.cmd button').forEach(function (b) {
+  b.addEventListener('click', function () {
+    var text = b.parentNode.querySelector('code').textContent;
+    navigator.clipboard.writeText(text).then(function () {
+      var label = b.textContent;
+      b.textContent = b.dataset.done;
+      setTimeout(function () { b.textContent = label; }, 1400);
+    });
+  });
+});
+var v = document.querySelector('.reel video');
+if (v && !matchMedia('(prefers-reduced-motion: reduce)').matches) { v.removeAttribute('controls'); v.play().catch(function () { v.setAttribute('controls', ''); }); }
+</script>
+</body>
+</html>
