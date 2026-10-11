@@ -82,21 +82,9 @@ The first time a mod is written in a session, Claude Code asks **Enable hot relo
 
 ## Made with givememod
 
-Mods it built in real sessions (the sessions were in Russian):
+Mods it built in real sessions (the sessions were in Russian): a spec check that counts which points of the brief are done, open or not started; a Spotify player above the prompt; and a 12-stage GTA V dubbing pipeline, with the running step's own counter and a tick when it finishes.
 
-**Spec check.** "Check everything I asked for in this conversation": the bar counts the points of the brief, here 27 of 29 done, 9 of them finished on a second pass, 1 open, 1 not started; `/tz` lists them.
-
-<img src="docs/made-with/tz-check.png" alt="A band above the prompt: Spec check givememod, a progress bar, 27/29, done 9, open 1, not started 1, /tz" width="748">
-
-**Music above the prompt.** "A Spotify player": the track playing, its progress, and previous, pause and next buttons.
-
-<img src="docs/made-with/spotify.png" alt="A band above the prompt with previous, pause and next buttons, The Redeemer by ANIZYZ, 0:39 of 1:33" width="746">
-
-**A long job you can watch.** "Show the dubbing pipeline": a GTA V dubbing run of 12 stages, the step running now with its own counter, and what comes next. A finished step turns grey with a tick, and the bar moves on.
-
-<img src="docs/made-with/pipeline.png" alt="GTA V dubbing: stage 5 of 12, the current step, the Parakeet sub-step at 17,639 of 29,676, what comes next" width="760">
-<img src="docs/made-with/pipeline-done.png" alt="The Parakeet step finished: 29,676 of 29,676, 100%, done" width="760">
-<img src="docs/made-with/pipeline-next.png" alt="GTA V dubbing: stage 6 of 12 with the next step" width="760">
+<img src="docs/made-with/givememod-mods.gif" alt="Real Claude Code sessions: a spec-check bar above the prompt, a Spotify player band, and a GTA V dubbing pipeline band moving from stage 5 of 12 to stage 6" width="860">
 
 **[slapbox](https://github.com/timoncool/slapbox).** Began as "a mod to spank Claude when it messes up" in a givememod session and grew into a mod of its own: eight slappers, nine butts, and Claude hears the tally with your next message.
 
