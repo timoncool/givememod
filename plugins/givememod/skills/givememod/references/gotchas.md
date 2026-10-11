@@ -60,6 +60,7 @@ What still reaches the model: `prompt.submit` context, tool-result `context`, `t
 | `on("x") is registered twice without a matcher` | two plain hooks on one event in one module | merge them, or give each a matcher |
 | `the event name passed to on() is not a string literal` | variable or loop over names | write each `on('…')` literally |
 | `"on" is declared again (shadowed)` | inner variable or parameter named `on` | rename it |
+| `Client: the plugin loaded no surface module (its hooks module builds no Client from a literal path)` | the element was renamed (`const Clicker = els.Client`) or `module` is not a string literal | keep the tag spelled `<Client module="./file.tsx" …>`; narrow with `const Client = 'Client' in els ? els.Client : null` where VS Code and mobile have none |
 | `a dynamic import()` / module refused | `import()`, `require`, npm or Node imports | static relative imports and bare `claude-code` only |
 | File not loaded | extension not `.ts .tsx .js .jsx .mjs .cjs .mts .cts` | rename |
 | JSX `does not parse` | JSX in a `.ts` file | use `.tsx` |
