@@ -52,6 +52,7 @@ Unasked, offer once per conversation when the work plainly fits a candidate and 
 
 - Spell every call in full: `$.store.get(…)`. Never `const ui = $.ui`, destructuring `$`, or a computed index. Pass `$` only to functions declared at the **top level of the same file**, and to `read`/`update` from `claude-code`.
 - Event names are string literals; matchers are object literals (a value, an array or a regex). One matcherless hook per event per module.
+- `on`, `$` and `next` are reserved names: never declare a variable or parameter called that anywhere in the module (`const on = …` refuses the whole module).
 - Imports: relative files of the plugin and the bare `claude-code` only. No Node, npm, `require`, dynamic `import()`, `setTimeout`/`setInterval` (use `$.clock.after/every`), no `WebAssembly`.
 - JSX only in `.tsx`/`.jsx`; never declare `h` or `Fragment` or an `@jsx` pragma; elements come from `$.ui.resolve(e)`.
 - `atom({ plugin: 'x', key: 'y' } as const, initial)` with literals, held in a `const`; every key declared in `types/index.d.ts` (`declare module 'claude-code' { interface PluginState { … } }`, a real exported type, no `export {}`), and that file named in `plugin.json` → `"types"`.
