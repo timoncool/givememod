@@ -84,11 +84,15 @@ The first time a mod is written in a session, Claude Code asks **Enable hot relo
 
 Mods it built in real sessions (the sessions were in Russian): a spec check that counts which points of the brief are done, open or not started; a Spotify player above the prompt; and a 12-stage GTA V dubbing pipeline, with the running step's own counter and a tick when it finishes.
 
-<img src="docs/made-with/givememod-mods.gif" alt="Real Claude Code sessions: a spec-check bar above the prompt, a Spotify player band, and a GTA V dubbing pipeline band moving from stage 5 of 12 to stage 6" width="860">
+<img src="docs/made-with/tz-check.png" alt="Spec check: a bar above the prompt counting the points of the brief, 27 of 29 done" width="760">
+<img src="docs/made-with/spotify.png" alt="Spotify player: previous, pause and next buttons and the track playing" width="760">
+<img src="docs/made-with/pipeline.png" alt="GTA V dubbing pipeline: stage 5 of 12 with the running step and its counter" width="760">
+<img src="docs/made-with/pipeline-done.png" alt="The step finished: 100%, done" width="760">
+<img src="docs/made-with/pipeline-next.png" alt="GTA V dubbing pipeline: stage 6 of 12" width="760">
 
 **[slapbox](https://github.com/timoncool/slapbox).** Began as "a mod to spank Claude when it messes up" in a givememod session and grew into a mod of its own: eight slappers, nine butts, and Claude hears the tally with your next message.
 
-<img src="https://raw.githubusercontent.com/timoncool/slapbox/main/docs/demo-en.gif" alt="slapbox: a cartoon butt above the prompt slapped by hand, slipper, whip, ruler and frying pan" width="760">
+<img src="https://raw.githubusercontent.com/timoncool/slapbox/main/docs/teaser.gif" alt="slapbox: a cartoon butt above the prompt slapped by hand, slipper, whip, ruler and frying pan" width="760">
 
 ## What is inside
 
