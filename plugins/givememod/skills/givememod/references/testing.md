@@ -80,6 +80,15 @@ on('tool.call', ($, e) => {
 
 Drive `$.turn.step(...)` with `.next()` until `done` and read `value` (after `for await`, `stream.result` came back `undefined` on 2.1.287).
 
+A stub for a streaming `$` call the mod makes, such as `$.process.spawn`, is an async generator that yields the pieces and returns the result wrapped as `{ value }`; returning the bare result fails with `returned neither { value } nor { deny }`:
+
+```ts
+on('process.spawn', async function* () {
+  yield { stream: 'stdout', text: '{"status":"Playing"}\n' }
+  return { value: { code: 0, signal: null } }
+} as never)
+```
+
 ## What a green run does not prove
 
 That it looks right on screen, that real tools return what you stubbed, or what a model call costs. Say "tests pass, not seen on screen" until the person has seen it. See it for real: `claude --plugin-dir <abs path>` or the session's dev-mods folder.
