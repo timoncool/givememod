@@ -84,11 +84,15 @@ mod 需要 Claude Code 2.1.287+（桌面版 Code 标签页 2.1.286+）。插件�
 
 它在真实会话里做出的 mod（会话是俄语的）：统计需求要点完成、未完成和未开始数量的需求核对；输入框上方的 Spotify 播放器；一个 12 个阶段的 GTA V 配音流水线，当前步骤有自己的计数，完成时打勾。
 
-<img src="docs/made-with/givememod-mods.gif" alt="真实的 Claude Code 会话：输入框上方的需求核对横条、Spotify 播放器横条、GTA V 配音流水线从第 5/12 阶段到第 6 阶段" width="860">
+<img src="docs/made-with/tz-check.png" alt="需求核对：输入框上方的横条，29 项完成 27 项" width="760">
+<img src="docs/made-with/spotify.png" alt="Spotify 播放器：上一首、暂停、下一首按钮和正在播放的曲目" width="760">
+<img src="docs/made-with/pipeline.png" alt="GTA V 配音流水线：第 5/12 阶段，当前步骤和计数" width="760">
+<img src="docs/made-with/pipeline-done.png" alt="步骤完成：100%" width="760">
+<img src="docs/made-with/pipeline-next.png" alt="GTA V 配音流水线：第 6/12 阶段" width="760">
 
 **[slapbox](https://github.com/timoncool/slapbox)。** 起初是在 givememod 会话里提的"Claude 搞砸时打它屁股的 mod"，后来长成了独立的 mod：八种打屁股工具、九种屁股，Claude 会在你的下一条消息里看到计数。
 
-<img src="https://raw.githubusercontent.com/timoncool/slapbox/main/docs/demo-en.gif" alt="slapbox：输入框上方的卡通屁股被手、拖鞋、鞭子、尺子和平底锅拍打" width="760">
+<img src="https://raw.githubusercontent.com/timoncool/slapbox/main/docs/teaser.gif" alt="slapbox：输入框上方的卡通屁股被手、拖鞋、鞭子、尺子和平底锅拍打" width="760">
 
 ## 里面有什么
 

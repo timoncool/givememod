@@ -84,11 +84,15 @@ claude plugin install givememod@givememod
 
 Моды, которые он собрал в живых сессиях: сверка ТЗ, которая считает, какие пункты сделаны, открыты и не начаты; плеер Spotify над полем ввода; пайплайн нейродубляжа GTA V из 12 этапов, где у текущего шага свой счётчик, а готовый шаг получает галочку.
 
-<img src="docs/made-with/givememod-mods.gif" alt="Живые сессии Claude Code: полоса сверки ТЗ над полем ввода, плеер Spotify, пайплайн нейродубляжа GTA V с этапа 5 из 12 на этап 6" width="860">
+<img src="docs/made-with/tz-check.png" alt="Сверка ТЗ: полоса над полем ввода, 27 из 29 пунктов сделано" width="760">
+<img src="docs/made-with/spotify.png" alt="Плеер Spotify: кнопки назад, пауза, вперёд и текущий трек" width="760">
+<img src="docs/made-with/pipeline.png" alt="Пайплайн нейродубляжа GTA V: этап 5 из 12, текущий шаг со счётчиком" width="760">
+<img src="docs/made-with/pipeline-done.png" alt="Шаг готов: 100%" width="760">
+<img src="docs/made-with/pipeline-next.png" alt="Пайплайн нейродубляжа GTA V: этап 6 из 12" width="760">
 
 **[slapbox](https://github.com/timoncool/slapbox).** Начался в сессии givememod как «мод, чтобы шлёпать Claude, когда он косячит», и вырос в отдельный мод: восемь шлёпалок, девять попок, а Claude узнаёт счёт с твоим следующим сообщением.
 
-<img src="https://raw.githubusercontent.com/timoncool/slapbox/main/docs/teaser-ru.gif" alt="slapbox: мультяшную попку над полем ввода шлёпают рукой, тапком, стеком, линейкой и сковородой, меняются попки" width="760">
+<img src="https://raw.githubusercontent.com/timoncool/slapbox/main/docs/teaser.gif" alt="slapbox: мультяшную попку над полем ввода шлёпают рукой, тапком, стеком, линейкой и сковородой, меняются попки" width="760">
 
 ## Что внутри
 
