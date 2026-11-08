@@ -1,9 +1,9 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 420" font-family="Segoe UI, sans-serif">
 <rect width="800" height="420" fill="#ffffff" rx="8"/>
 <text x="64" y="30" fill="#1f2328" font-size="17" font-weight="700">★ Star History — timoncool/givememod</text>
-<text x="776" y="30" fill="#1f2328" font-size="14" text-anchor="end">9 stars · updated 2026-11-07</text>
+<text x="776" y="30" fill="#1f2328" font-size="14" text-anchor="end">9 stars · updated 2026-11-08</text>
 <line x1="64" y1="364.0" x2="776" y2="364.0" stroke="#d1d9e0" stroke-width="1"/><text x="54" y="368.0" fill="#1f2328" font-size="13" text-anchor="end">0</text><line x1="64" y1="293.8" x2="776" y2="293.8" stroke="#d1d9e0" stroke-width="1"/><text x="54" y="297.8" fill="#1f2328" font-size="13" text-anchor="end">2</text><line x1="64" y1="223.6" x2="776" y2="223.6" stroke="#d1d9e0" stroke-width="1"/><text x="54" y="227.6" fill="#1f2328" font-size="13" text-anchor="end">4</text><line x1="64" y1="118.2" x2="776" y2="118.2" stroke="#d1d9e0" stroke-width="1"/><text x="54" y="122.2" fill="#1f2328" font-size="13" text-anchor="end">7</text><line x1="64" y1="48.0" x2="776" y2="48.0" stroke="#d1d9e0" stroke-width="1"/><text x="54" y="52.0" fill="#1f2328" font-size="13" text-anchor="end">9</text>
-<path d="M64.0,364.0 L64.0,328.9 L65.7,293.8 L67.0,258.7 L91.5,223.6 L132.4,188.4 L149.1,153.3 L150.8,118.2 L262.2,83.1 L362.2,48.0 L776.0,48.0" fill="none" stroke="#0969da" stroke-width="2.5" stroke-linejoin="round"/>
+<path d="M64.0,364.0 L64.0,328.9 L65.7,293.8 L66.9,258.7 L90.5,223.6 L130.0,188.4 L146.0,153.3 L147.7,118.2 L255.0,83.1 L351.4,48.0 L776.0,48.0" fill="none" stroke="#0969da" stroke-width="2.5" stroke-linejoin="round"/>
 <circle cx="776.0" cy="48.0" r="4" fill="#0969da"/>
-<text x="64.0" y="388" fill="#1f2328" font-size="13" text-anchor="middle">Oct 11, 2026</text><text x="301.3" y="388" fill="#1f2328" font-size="13" text-anchor="middle">Oct 20, 2026</text><text x="538.7" y="388" fill="#1f2328" font-size="13" text-anchor="middle">Oct 29, 2026</text><text x="776.0" y="388" fill="#1f2328" font-size="13" text-anchor="middle">Nov 07, 2026</text>
+<text x="64.0" y="388" fill="#1f2328" font-size="13" text-anchor="middle">Oct 11, 2026</text><text x="301.3" y="388" fill="#1f2328" font-size="13" text-anchor="middle">Oct 20, 2026</text><text x="538.7" y="388" fill="#1f2328" font-size="13" text-anchor="middle">Oct 30, 2026</text><text x="776.0" y="388" fill="#1f2328" font-size="13" text-anchor="middle">Nov 08, 2026</text>
 </svg>
